@@ -1,5 +1,5 @@
 ---
-title: MixSIARPy
+title: MixSIAPy
 emoji: 🌊
 colorFrom: green
 colorTo: blue
@@ -13,9 +13,9 @@ suggested_hardware: cpu-upgrade
 short_description: Bayesian stable-isotope mixing models in Python
 ---
 
-# MixSIARPy
+# MixSIAPy
 
-MixSIARPy is a native Python implementation of Bayesian tracer mixing models inspired by MixSIAR. It uses PyMC for inference and ArviZ for posterior storage and diagnostics; JAGS is not required at runtime.
+MixSIAPy is a native Python implementation of Bayesian tracer mixing models inspired by MixSIAR. It uses PyMC for inference and ArviZ for posterior storage and diagnostics; JAGS is not required at runtime.
 
 > **Project status: research preview.** The principal model structures and the official example workflows have been ported, but full numerical parity with every R/JAGS configuration is still being validated. Do not describe this release as a drop-in or 100% verified replacement for MixSIAR.
 
@@ -55,8 +55,12 @@ terminal. It opens in the default browser, but all computation remains local.
 
 ```powershell
 python -m pip install -e ".[bayes,gui]"
-mixsiarpy-gui
+mixsiapy-gui
 ```
+
+The former command ``mixsiarpy-gui`` and import name ``mixsiarpy`` remain
+available as compatibility aliases. New analyses should use ``MixSIAPy`` in
+prose and ``mixsiapy`` in installation commands and Python imports.
 
 The GUI validates uploaded mixture/source/discrimination CSV files, configures
 fixed/random/continuous effects and generalized compositional regression,
@@ -69,7 +73,7 @@ figures, and downloads a ZIP containing the complete posterior plus
 Each example is self-contained and follows the corresponding R script without a hidden common configuration module. The installed examples are available through `get_resource_path("examples")`.
 
 ```powershell
-python -c "from mixsiarpy import get_resource_path; print(get_resource_path('examples','wolves.py'))"
+python -c "from mixsiapy import get_resource_path; print(get_resource_path('examples','wolves.py'))"
 python C:\path\printed\above\wolves.py --run test
 python C:\path\printed\above\wolves.py --build-only
 ```
@@ -78,22 +82,22 @@ Running `wolves.py` directly performs a short test sample and writes posterior N
 
 ### Spyder
 
-Spyder must use the same Python environment in which MixSIARPy is installed. For the current Anaconda installation, the interpreter is `C:\Users\Jing\anaconda3\python.exe`. Restart Spyder's kernel after reinstalling the package, open the installed example returned by `get_resource_path("examples", "wolves.py")`, and click **Run**. The variables `fit`, `model`, `mix`, `source`, and `discr` remain visible in Variable Explorer, while complete files are saved under `outputs/wolves` relative to Spyder's working directory.
+Spyder must use the same Python environment in which MixSIAPy is installed. For the current Anaconda installation, the interpreter is `C:\Users\Jing\anaconda3\python.exe`. Restart Spyder's kernel after reinstalling the package, open the installed example returned by `get_resource_path("examples", "wolves.py")`, and click **Run**. The variables `fit`, `model`, `mix`, `source`, and `discr` remain visible in Variable Explorer, while complete files are saved under `outputs/wolves` relative to Spyder's working directory.
 
 To verify which installation Spyder imports, run in its console:
 
 ```python
-import mixsiarpy
-print(mixsiarpy.__file__)
-print(mixsiarpy.get_resource_path("data"))
+import mixsiapy
+print(mixsiapy.__file__)
+print(mixsiapy.get_resource_path("data"))
 ```
 
-Both paths should be below `C:\Users\Jing\anaconda3\Lib\site-packages\mixsiarpy`.
+Both paths should be below `C:\Users\Jing\anaconda3\Lib\site-packages\mixsiapy`.
 
-The wheel installs `data/`, `examples/`, `docs/`, `reference_r/`, and `validation/` directly inside the `mixsiarpy` package directory (for example, `Lib/site-packages/mixsiarpy/data`). Locate them without assuming an environment directory:
+The wheel installs `data/`, `examples/`, `docs/`, `reference_r/`, and `validation/` directly inside the `mixsiapy` package directory (for example, `Lib/site-packages/mixsiapy/data`). Locate them without assuming an environment directory:
 
 ```python
-from mixsiarpy import get_resource_path
+from mixsiapy import get_resource_path
 
 wolves_data = get_resource_path("data", "wolves_consumer.csv")
 wolves_example = get_resource_path("examples", "wolves.py")
@@ -103,7 +107,7 @@ Minimal library usage:
 
 ```python
 from pathlib import Path
-from mixsiarpy import load_mix_data, load_source_data, load_discr_data, run_model
+from mixsiapy import load_mix_data, load_source_data, load_discr_data, run_model
 
 data = Path("data")
 mix = load_mix_data(
@@ -120,10 +124,10 @@ fit = run_model("test", mix, source, discr, random_seed=42, target_accept=0.95)
 
 ## Repository layout
 
-- `mixsiarpy/`: supported API plus installed `data/`, `examples/`, `docs/`, `reference_r/`, and `validation/` resources;
+- `mixsiapy/`: supported API plus installed `data/`, `examples/`, `docs/`, `reference_r/`, and `validation/` resources;
 - `tests/`: automated Python tests;
 
-Generated files in `outputs/` are ignored by Git. The supported API is the `mixsiarpy` package; code under `reference_r/` is not imported at runtime.
+Generated files in `outputs/` are ignored by Git. The supported API is the `mixsiapy` package; code under `reference_r/` is not imported at runtime.
 
 ## Validation and reproducibility
 
@@ -135,4 +139,4 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request. Citation
 
 ## License and attribution
 
-This project is distributed under the GNU General Public License v3.0. MixSIARPy is an independent Python port and is not presented as an official release of the R MixSIAR authors. The frozen reference code retains its original authorship and GPL-3 licensing information.
+This project is distributed under the GNU General Public License v3.0. MixSIAPy is an independent Python port and is not presented as an official release of the R MixSIAR authors. The frozen reference code retains its original authorship and GPL-3 licensing information.
