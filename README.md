@@ -1,17 +1,3 @@
----
-title: MixSIAPy
-emoji: 🌊
-colorFrom: green
-colorTo: blue
-sdk: docker
-app_port: 7860
-pinned: false
-license: gpl-3.0
-fullWidth: true
-header: mini
-suggested_hardware: cpu-upgrade
-short_description: Bayesian stable-isotope mixing models in Python
----
 
 # MixSIAPy
 
