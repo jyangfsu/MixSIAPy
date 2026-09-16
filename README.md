@@ -1,3 +1,17 @@
+---
+title: MixSIAPy
+emoji: 🌊
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+license: gpl-3.0
+fullWidth: true
+header: mini
+suggested_hardware: cpu-upgrade
+short_description: Bayesian stable-isotope mixing models in Python
+---
 
 # MixSIAPy
 
@@ -43,10 +57,6 @@ terminal. It opens in the default browser, but all computation remains local.
 python -m pip install -e ".[bayes,gui]"
 mixsiapy-gui
 ```
-
-The former command ``mixsiarpy-gui`` and import name ``mixsiarpy`` remain
-available as compatibility aliases. New analyses should use ``MixSIAPy`` in
-prose and ``mixsiapy`` in installation commands and Python imports.
 
 The GUI validates uploaded mixture/source/discrimination CSV files, configures
 fixed/random/continuous effects and generalized compositional regression,
