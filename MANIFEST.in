@@ -1,0 +1,11 @@
+include LICENSE README.md CONTRIBUTING.md CODE_OF_CONDUCT.md pyproject.toml setup.py
+recursive-include mixsiapy/data *.csv
+recursive-include mixsiapy/examples *.py
+recursive-include mixsiapy/docs *.md *.docx
+recursive-include mixsiapy/gui *.py
+recursive-include mixsiapy/gui/assets *.svg *.png
+recursive-include mixsiapy/reference_r *.R DESCRIPTION NAMESPACE
+recursive-include tests *.py
+prune outputs
+prune manuscript
+global-exclude __pycache__ *.py[cod] *.nc *.rds

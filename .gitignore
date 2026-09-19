@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments and builds
+.venv/
+.build-venv*/
+venv/
+env/
+build/
+dist/
+releases/
+*.egg-info/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated model output
+outputs/
+mixsiapy/examples/outputs/
+manuscript_results/
+benchmarks/results/
+benchmarks/numerical_agreement*/
+benchmarks/numerical_recovery*/
+benchmarks/performance_benchmark*/
+benchmarks/*.log
+*.nc
+*.jags
+
+# Documentation build products
+/docs/
+/packaging/
+docs/manual_render*/
+docs/~$*
+
+# Manuscript build products
+manuscript/build/
+manuscript/*.aux
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.log
+manuscript/*.out
+manuscript/*.pdf
