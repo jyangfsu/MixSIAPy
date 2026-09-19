@@ -64,6 +64,16 @@ selects the inference backend and CPU/GPU device, displays diagnostics and
 figures, and downloads a ZIP containing the complete posterior plus
 `analysis_config.json` and an editable `reproduce_analysis.py` script.
 
+### Windows desktop release
+
+The Windows release provides the same local graphical interface without requiring
+users to install Python. Extract the complete release archive and double-click
+`MixSIAPy.exe`; the application starts a service on the local computer and opens the
+interface in the default browser. The controller window must remain open while the
+application is in use. The portable desktop build includes CPU sampling with the
+default PyMC backend. Optional Nutpie, JAX, NumPyro, BlackJAX, and GPU environments
+remain available through the Python installation.
+
 ## Quick start
 
 Each example is self-contained and follows the corresponding R script without a hidden common configuration module. The installed examples are available through `get_resource_path("examples")`.
@@ -78,7 +88,7 @@ Running `wolves.py` directly performs a short test sample and writes posterior N
 
 ### Spyder
 
-Spyder must use the same Python environment in which MixSIAPy is installed. For the current Anaconda installation, the interpreter is `C:\Users\Jing\anaconda3\python.exe`. Restart Spyder's kernel after reinstalling the package, open the installed example returned by `get_resource_path("examples", "wolves.py")`, and click **Run**. The variables `fit`, `model`, `mix`, `source`, and `discr` remain visible in Variable Explorer, while complete files are saved under `outputs/wolves` relative to Spyder's working directory.
+Spyder must use the same Python environment in which MixSIAPy is installed. Locate that interpreter with `python -c "import sys; print(sys.executable)"`, select it in Spyder, and restart the kernel after installing or updating the package. Open the installed example returned by `get_resource_path("examples", "wolves.py")` and click **Run**. The variables `fit`, `model`, `mix`, `source`, and `discr` remain visible in Variable Explorer, while complete files are saved under `outputs/wolves` relative to Spyder's working directory.
 
 To verify which installation Spyder imports, run in its console:
 
@@ -88,9 +98,9 @@ print(mixsiapy.__file__)
 print(mixsiapy.get_resource_path("data"))
 ```
 
-Both paths should be below `C:\Users\Jing\anaconda3\Lib\site-packages\mixsiapy`.
+Both paths should point to `mixsiapy` inside the active Python environment's `site-packages` directory.
 
-The wheel installs `data/`, `examples/`, `docs/`, `reference_r/`, and `validation/` directly inside the `mixsiapy` package directory (for example, `Lib/site-packages/mixsiapy/data`). Locate them without assuming an environment directory:
+The wheel installs `data/`, `examples/`, `docs/`, and `reference_r/` directly inside the `mixsiapy` package directory (for example, `Lib/site-packages/mixsiapy/data`). Locate them without assuming an environment directory:
 
 ```python
 from mixsiapy import get_resource_path
@@ -120,14 +130,16 @@ fit = run_model("test", mix, source, discr, random_seed=42, target_accept=0.95)
 
 ## Repository layout
 
-- `mixsiapy/`: supported API plus installed `data/`, `examples/`, `docs/`, `reference_r/`, and `validation/` resources;
-- `tests/`: automated Python tests;
+- `.github/`: automated testing and deployment workflows;
+- `mixsiapy/`: supported API plus installed `data/`, `examples/`, `docs/`, `gui/`, and `reference_r/` resources;
+- `tests/`: automated Python unit and integration tests;
+- `benchmarks/`: reproducible numerical-agreement, backend-performance, and GPU-scaling experiments.
 
 Generated files in `outputs/` are ignored by Git. The supported API is the `mixsiapy` package; code under `reference_r/` is not imported at runtime.
 
 ## Validation and reproducibility
 
-Run the fast test suite with `python -m pytest`. The validation status and the planned R-versus-Python comparison matrix are documented in [`docs/VALIDATION.md`](docs/VALIDATION.md). Posterior agreement must be evaluated with sufficiently converged chains; results from runs with large R-hat values or many divergences are not valid reference targets.
+Run the fast test suite with `python -m pytest`. The validation status and the planned R-versus-Python comparison matrix are documented in [`mixsiapy/docs/VALIDATION.md`](mixsiapy/docs/VALIDATION.md). Posterior agreement must be evaluated with sufficiently converged chains; results from runs with large R-hat values or many divergences are not valid reference targets.
 
 ## Contributing and citation
 
